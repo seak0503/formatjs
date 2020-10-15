@@ -7,39 +7,40 @@ import {outputJSONSync} from 'fs-extra';
 import * as AVAILABLE_LOCALES from 'cldr-core/availableLocales.json';
 import minimist from 'minimist';
 
-const MISSING_DATA_LOCALES = new Set([
-  'ff-Adlm',
-  'ff-Adlm-BF',
-  'ff-Adlm-CM',
-  'ff-Adlm-GH',
-  'ff-Adlm-GM',
-  'ff-Adlm-GW',
-  'ff-Adlm-LR',
-  'ff-Adlm-MR',
-  'ff-Adlm-NE',
-  'ff-Adlm-NG',
-  'ff-Adlm-SL',
-  'ff-Adlm-SN',
-  'ks-Arab',
-  'mai',
-  'mni',
-  'mni-Beng',
-  'ms-ID',
-  'pcm',
-  'sat',
-  'sat-Olck',
-  'sd-Arab',
-  'sd-Deva',
-  'su',
-  'su-Latn',
-]);
+// const MISSING_DATA_LOCALES = new Set([
+//   'ff-Adlm',
+//   'ff-Adlm-BF',
+//   'ff-Adlm-CM',
+//   'ff-Adlm-GH',
+//   'ff-Adlm-GM',
+//   'ff-Adlm-GW',
+//   'ff-Adlm-LR',
+//   'ff-Adlm-MR',
+//   'ff-Adlm-NE',
+//   'ff-Adlm-NG',
+//   'ff-Adlm-SL',
+//   'ff-Adlm-SN',
+//   'ks-Arab',
+//   'mai',
+//   'mni',
+//   'mni-Beng',
+//   'ms-ID',
+//   'pcm',
+//   'sat',
+//   'sat-Olck',
+//   'sd-Arab',
+//   'sd-Deva',
+//   'su',
+//   'su-Latn',
+// ]);
 
 async function main(args: minimist.ParsedArgs) {
   const {outDir} = args;
   // Dist all locale files to locale-data
-  const locales = AVAILABLE_LOCALES.availableLocales.full.filter(
-    l => !MISSING_DATA_LOCALES.has(l)
-  );
+  const locales = AVAILABLE_LOCALES.availableLocales.full;
+  // .filter(
+  //   l => !MISSING_DATA_LOCALES.has(l)
+  // );
   const [numbersData, currenciesData, unitsData] = await Promise.all([
     extractNumbers(locales),
     extractCurrencies(locales),
