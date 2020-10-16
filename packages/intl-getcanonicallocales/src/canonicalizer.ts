@@ -81,7 +81,7 @@ export function canonicalizeUnicodeLanguageId(
   // Try language _ variant
   let finalLangAst = unicodeLanguageId;
   if (unicodeLanguageId.variants.length) {
-    let replacedLang: string = '';
+    let replacedLang = '';
     for (const variant of unicodeLanguageId.variants) {
       if (
         (replacedLang =
@@ -218,7 +218,7 @@ export function canonicalizeUnicodeLanguageId(
 
   if (finalLangAst.variants.length) {
     for (let i = 0; i < finalLangAst.variants.length; i++) {
-      let variant = finalLangAst.variants[i].toLowerCase();
+      const variant = finalLangAst.variants[i].toLowerCase();
       if (variantAlias[variant]) {
         const alias = variantAlias[variant];
         if (isUnicodeVariantSubtag(alias)) {
